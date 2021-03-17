@@ -1,4 +1,4 @@
-# KaellyHorn [![Build Status](https://api.travis-ci.com/KaellyBot/KaellyHorn.svg)](https://travis-ci.com/KaellyBot/KaellyHorn) [![Known Vulnerabilities](https://snyk.io/test/github/kaellybot/kaellyhorn/badge.svg?targetFile=pom.xml)](https://snyk.io/test/github/kaellybot/kaellyhorn?targetFile=pom.xml)  
+# KaellyHorn [![Build Status](https://api.travis-ci.com/KaellyBot/KaellyHorn.svg)](https://travis-ci.com/KaellyBot/KaellyHorn) [![Known Vulnerabilities](https://snyk.io/test/github/kaellybot/kaellyhorn/badge.svg?targetFile=pom.xml)](https://snyk.io/test/github/kaellybot/kaellyhorn?targetFile=pom.xml) [![Docker Hub](https://img.shields.io/docker/v/kaellybot/kaellyhorn.svg)](https://hub.docker.com/repository/docker/kaellybot/kaellyhorn)  
 
 KaellyHorn is a Discord bot dedicated to play nice sounds, available in FR, EN! If you have some questions, suggestions or just want to say hello, come in the support server: [![Support Server Invite](https://img.shields.io/badge/Join-KaellyBOT%20Support-7289DA.svg?style=flat)](https://discord.gg/CyJCFDk)
 
