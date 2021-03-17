@@ -1,7 +1,7 @@
 package com.github.kaellybot.kaellyhorn.command.util;
 
-import com.github.kaellybot.commons.model.constants.Error;
-import com.github.kaellybot.commons.model.constants.Language;
+import com.github.kaellybot.kaellyhorn.model.constant.Error;
+import com.github.kaellybot.kaellyhorn.model.constant.Language;
 import discord4j.core.object.entity.Message;
 import discord4j.rest.util.PermissionSet;
 import reactor.core.publisher.Flux;

@@ -1,7 +1,5 @@
 package com.github.kaellybot.kaellyhorn.model.constant;
 
-import com.github.kaellybot.commons.model.constants.Language;
-
 public final class Constants {
 
     private Constants(){}

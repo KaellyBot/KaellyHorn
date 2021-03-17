@@ -1,6 +1,6 @@
 package com.github.kaellybot.kaellyhorn.command.ping;
 
-import com.github.kaellybot.commons.model.constants.Language;
+import com.github.kaellybot.kaellyhorn.model.constant.Language;
 import com.github.kaellybot.kaellyhorn.command.util.AbstractCommandArgument;
 import com.github.kaellybot.kaellyhorn.command.util.Command;
 import com.github.kaellybot.kaellyhorn.util.DiscordTranslator;

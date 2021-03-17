@@ -1,6 +1,6 @@
 package com.github.kaellybot.kaellyhorn.command.util;
 
-import com.github.kaellybot.commons.model.constants.Language;
+import com.github.kaellybot.kaellyhorn.model.constant.Language;
 import com.github.kaellybot.kaellyhorn.model.constant.Order;
 import com.github.kaellybot.kaellyhorn.model.constant.Priority;
 import com.github.kaellybot.kaellyhorn.model.error.ErrorFactory;

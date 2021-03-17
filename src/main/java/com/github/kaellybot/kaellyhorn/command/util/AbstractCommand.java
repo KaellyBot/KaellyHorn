@@ -1,7 +1,7 @@
 package com.github.kaellybot.kaellyhorn.command.util;
 
-import com.github.kaellybot.commons.model.constants.Error;
-import com.github.kaellybot.commons.model.constants.Language;
+import com.github.kaellybot.kaellyhorn.model.constant.Language;
+import com.github.kaellybot.kaellyhorn.model.constant.Error;
 import com.github.kaellybot.kaellyhorn.model.constant.Constants;
 import com.github.kaellybot.kaellyhorn.model.error.ErrorFactory;
 import com.github.kaellybot.kaellyhorn.util.DiscordTranslator;

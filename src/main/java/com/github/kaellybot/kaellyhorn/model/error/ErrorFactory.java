@@ -1,6 +1,6 @@
 package com.github.kaellybot.kaellyhorn.model.error;
 
-import com.github.kaellybot.commons.model.constants.Error;
+import com.github.kaellybot.kaellyhorn.model.constant.Error;
 import com.github.kaellybot.kaellyhorn.command.util.Command;
 import discord4j.rest.util.Permission;
 
