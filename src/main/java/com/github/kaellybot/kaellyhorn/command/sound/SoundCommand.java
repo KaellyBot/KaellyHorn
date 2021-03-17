@@ -1,4 +1,4 @@
-package com.github.kaellybot.kaellyhorn.command.ping;
+package com.github.kaellybot.kaellyhorn.command.sound;
 
 import com.github.kaellybot.kaellyhorn.command.util.CommandArgument;
 import com.github.kaellybot.kaellyhorn.command.util.AbstractCommand;
@@ -10,13 +10,13 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-@Qualifier(PingCommand.COMMAND_QUALIFIER)
-public class PingCommand extends AbstractCommand {
+@Qualifier(SoundCommand.COMMAND_QUALIFIER)
+public class SoundCommand extends AbstractCommand {
 
-    public static final String COMMAND_QUALIFIER = "PingCommand";
-    public static final String COMMAND_NAME = "ping";
+    public static final String COMMAND_QUALIFIER = "SoundCommand";
+    public static final String COMMAND_NAME = "sound";
 
-    public PingCommand(@Qualifier(COMMAND_QUALIFIER) @Lazy List<CommandArgument<Message>> arguments, DiscordTranslator translator) {
+    public SoundCommand(@Qualifier(COMMAND_QUALIFIER) @Lazy List<CommandArgument<Message>> arguments, DiscordTranslator translator) {
         super(COMMAND_NAME, arguments, translator);
     }
 }

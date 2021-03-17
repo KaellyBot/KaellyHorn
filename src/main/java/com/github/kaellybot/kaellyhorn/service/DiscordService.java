@@ -1,5 +1,6 @@
 package com.github.kaellybot.kaellyhorn.service;
 
+import com.github.kaellybot.kaellyhorn.command.sound.SoundCommand;
 import com.github.kaellybot.kaellyhorn.command.util.Command;
 import com.github.kaellybot.kaellyhorn.util.DiscordTranslator;
 import discord4j.core.DiscordClient;
@@ -30,9 +31,13 @@ public class DiscordService {
 
     private final DiscordTranslator translator;
 
+    private String presence;
+
     public DiscordService(List<Command> commands,  DiscordTranslator translator){
         this.commands = commands;
         this.translator = translator;
+
+        presence = this.translator.getPrefix() + SoundCommand.COMMAND_NAME + " help";
     }
 
     public void startBot(){
@@ -43,7 +48,7 @@ public class DiscordService {
                             Intent.GUILDS,
                             Intent.GUILD_MESSAGES,
                             Intent.DIRECT_MESSAGES))
-                    .setInitialStatus(ignored -> Presence.online(Activity.watching("!help sound")))
+                    .setInitialStatus(ignored -> Presence.online(Activity.watching(presence)))
                     .setMemberRequestFilter(MemberRequestFilter.none())
                     .withGateway(client -> Mono.when(
                         reconnectListener(client),
@@ -64,7 +69,7 @@ public class DiscordService {
     private Mono<Void> reconnectListener(GatewayDiscordClient client){
         return client.getEventDispatcher().on(ReconnectEvent.class)
                 .flatMap(event -> event.getClient()
-                        .updatePresence(Presence.online(Activity.watching("!help sound"))))
+                        .updatePresence(Presence.online(Activity.watching(presence))))
                 .then();
     }
 }
