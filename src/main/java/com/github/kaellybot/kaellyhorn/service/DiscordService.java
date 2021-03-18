@@ -47,6 +47,7 @@ public class DiscordService {
                     .setEnabledIntents(IntentSet.of(
                             Intent.GUILDS,
                             Intent.GUILD_MESSAGES,
+                            Intent.GUILD_VOICE_STATES,
                             Intent.DIRECT_MESSAGES))
                     .setInitialStatus(ignored -> Presence.online(Activity.watching(presence)))
                     .setMemberRequestFilter(MemberRequestFilter.none())

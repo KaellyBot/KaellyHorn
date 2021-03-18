@@ -8,16 +8,35 @@ import discord4j.core.event.domain.VoiceStateUpdateEvent;
 import discord4j.core.object.VoiceState;
 import discord4j.core.object.entity.channel.VoiceChannel;
 import discord4j.voice.AudioProvider;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.reactivestreams.Publisher;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
+import java.util.List;
+import java.util.Optional;
+import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-public final class SoundUtils {
+@Slf4j
+@Component
+public class SoundUtils {
 
-    private SoundUtils(){}
+    private static final File[] EMPTY_SOUNDS = new File[0];
 
-    public static Mono<Void> playSound(VoiceChannel channel, AudioProvider provider){
+    private final String soundsLocation;
+
+    public SoundUtils(@Value("${sounds.directory}") String soundsLocation){
+        this.soundsLocation = soundsLocation;
+    }
+
+    public Mono<Void> playSound(VoiceChannel channel, AudioProvider provider){
         return channel.join(spec -> spec.setProvider(provider))
         .flatMap(connection -> {
             final Publisher<Boolean> voiceStateCounter = channel.getVoiceStates()
@@ -36,12 +55,12 @@ public final class SoundUtils {
         });
     }
 
-    public static AudioLoadResultHandler getAudioResultHandler(GuildAudioManager manager){
+    public AudioLoadResultHandler getAudioResultHandler(GuildAudioManager manager){
         return new AudioLoadResultHandler() {
 
             @Override
             public void trackLoaded(AudioTrack audioTrack) {
-                manager.getScheduler().play(audioTrack);
+                manager.getScheduler().play(audioTrack, true);
             }
 
             @Override
@@ -51,7 +70,7 @@ public final class SoundUtils {
 
             @Override
             public void noMatches() {
-
+                throw new UnsupportedOperationException();
             }
 
             @Override
@@ -59,5 +78,44 @@ public final class SoundUtils {
                 manager.getScheduler().skip();
             }
         };
+    }
+
+    public Optional<String> getRandomSound() {
+        File[] sounds = getSounds();
+        if (sounds.length > 0) {
+            try {
+                return Optional.of(sounds[new Random().nextInt(sounds.length)].getCanonicalPath());
+            } catch (IOException e) {
+                log.error(e.getMessage());
+            }
+        }
+
+        log.warn("No sound to play. Check if the directory is well created/filled and the app configuration");
+        return Optional.empty();
+    }
+
+    public Optional<String> getRandomSound(String name) {
+        return Stream.of(getSounds())
+                .filter(sound -> sound.getName().toLowerCase().startsWith(name))
+                .findAny()
+                .map(file -> {
+                    try {
+                        return file.getCanonicalPath();
+                    } catch (IOException e) {
+                        log.error(e.getMessage());
+                    }
+                    return null;
+                });
+    }
+
+    private File[] getSounds(){
+        File file = new File(soundsLocation);
+        return Optional.ofNullable(file.listFiles()).orElse(EMPTY_SOUNDS);
+    }
+
+    public List<String> getSoundList(){
+        return Stream.of(getSounds())
+                .map(file -> file.getName().toLowerCase().replaceFirst("[.][^.]+$", StringUtils.EMPTY))
+                .collect(Collectors.toList());
     }
 }
