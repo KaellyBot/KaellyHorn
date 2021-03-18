@@ -1,5 +1,9 @@
 package com.github.kaellybot.kaellyhorn.util;
 
+import com.sedmelluq.discord.lavaplayer.player.AudioLoadResultHandler;
+import com.sedmelluq.discord.lavaplayer.tools.FriendlyException;
+import com.sedmelluq.discord.lavaplayer.track.AudioPlaylist;
+import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import discord4j.core.event.domain.VoiceStateUpdateEvent;
 import discord4j.core.object.VoiceState;
 import discord4j.core.object.entity.channel.VoiceChannel;
@@ -30,5 +34,30 @@ public final class SoundUtils {
                     .then();
             return Mono.firstWithSignal(onDelay, onEvent).then(connection.disconnect());
         });
+    }
+
+    public static AudioLoadResultHandler getAudioResultHandler(GuildAudioManager manager){
+        return new AudioLoadResultHandler() {
+
+            @Override
+            public void trackLoaded(AudioTrack audioTrack) {
+                manager.getScheduler().play(audioTrack);
+            }
+
+            @Override
+            public void playlistLoaded(AudioPlaylist audioPlaylist) {
+                audioPlaylist.getTracks().forEach(manager.getScheduler()::play);
+            }
+
+            @Override
+            public void noMatches() {
+
+            }
+
+            @Override
+            public void loadFailed(FriendlyException e) {
+                manager.getScheduler().skip();
+            }
+        };
     }
 }
