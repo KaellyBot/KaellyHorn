@@ -142,7 +142,7 @@
     <repositories>
         <repository>
             <id>central</id>
-            <name></name>
+            <name>bintray</name>
             <url>https://jcenter.bintray.com</url>
         </repository>
         <repository>
