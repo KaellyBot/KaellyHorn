@@ -8,4 +8,4 @@ before_install:
   - chmod +x mvnw
 
 script:
-  - mvn clean install
+  - mvn clean install --settings .travis.settings.xml
