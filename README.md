@@ -34,6 +34,9 @@ If you are fed up with Docker, you can also build this project by following thes
 3. Take the generated JAR file from target directory
 4. Start it with the Java command `java -jar yourOwnBot.jar` and here we go!
 
+## Kaellybot sounds
+You can find the sounds used by previous versions of Kaellybot [here](https://github.com/KaellyBot/Kaelly-environment/tree/master/kaellyhorn/volume/sounds). Enjoy :)
+
 ## License  
 
 KaellyHorn is [GPL(v3) licensed](./LICENSE).
